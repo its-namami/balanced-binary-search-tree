@@ -12,4 +12,6 @@ puts "\nInorder:"
 tree.inorder { |data| print "#{data} " }
 puts "\nPostorder:"
 tree.postorder { |data| print "#{data} " }
+tree.insert(5)
+tree.insert(6)
 puts tree.pretty_print
