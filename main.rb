@@ -18,6 +18,10 @@ puts
 puts tree.pretty_print
 puts '-----'
 
+puts tree.find(29).inspect
+puts tree.find(1).inspect
+puts tree.find(-11).inspect
+
 50.times do |n|
   n -= 20
   puts "##{n}\n-------\n"

@@ -82,6 +82,13 @@ class Tree
     node_val
   end
 
+  def find(value, node = root)
+    return unless node
+    return node if value == node.data
+
+    find(value, node.left) || find(value, node.right)
+  end
+
   def pretty_print(node = root, prefix = '', is_left = true)
     return '<empty>' if root.nil?
 
