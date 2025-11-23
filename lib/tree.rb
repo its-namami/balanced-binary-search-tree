@@ -89,6 +89,31 @@ class Tree
     find(value, node.left) || find(value, node.right)
   end
 
+  def level_order(node = root, queue = [], &block)
+    return if node.nil?
+
+    queue << node.left if node.left
+    queue << node.right if node.right
+
+    yield node.data
+
+    level_order(queue.shift, queue, &block)
+  end
+
+  def level_order_iterative
+    queue = []
+    node = root
+
+    until node.nil?
+      yield node.data
+
+      queue << node.left if node.left
+      queue << node.right if node.right
+
+      node = queue.shift
+    end
+  end
+
   def pretty_print(node = root, prefix = '', is_left = true)
     return '<empty>' if root.nil?
 

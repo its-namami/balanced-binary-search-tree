@@ -22,6 +22,8 @@ puts tree.find(29).inspect
 puts tree.find(1).inspect
 puts tree.find(-11).inspect
 
+tree.level_order_iterative { |node| puts node }
+
 50.times do |n|
   n -= 20
   puts "##{n}\n-------\n"
