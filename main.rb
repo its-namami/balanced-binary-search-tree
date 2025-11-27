@@ -23,10 +23,20 @@ puts tree.find(1).inspect
 puts tree.find(-11).inspect
 
 tree.level_order_iterative { |node| puts node }
+puts '-----'
+tree.pretty_print
+puts "9:: d#{tree.depth(9)} | h#{tree.height(9)}"
+puts "1:: d#{tree.depth 1} | h#{tree.height(1)}"
+puts "-7:: d#{tree.depth(-7)} | h#{tree.height(-7)}"
+puts "-3:: d#{tree.depth(-3)} | h#{tree.height(-3)}"
+puts "19:: d#{tree.depth(19)} | h#{tree.height(19)}"
+puts "21:: d#{tree.depth(21)} | h#{tree.height(21)}"
+puts "23:: d#{tree.depth(23)} | h#{tree.height(23)}"
+puts "29:: d#{tree.depth(29)} | h#{tree.height(29)}"
 
-50.times do |n|
-  n -= 20
-  puts "##{n}\n-------\n"
-  tree.delete(n) || next
-  puts tree.pretty_print
-end
+# 50.times do |n|
+#   n -= 20
+#   puts "##{n}\n-------\n"
+#   tree.delete(n) || next
+#   puts tree.pretty_print
+# end

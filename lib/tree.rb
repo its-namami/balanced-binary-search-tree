@@ -152,9 +152,32 @@ class Tree
     result
   end
 
+  def height(node_value = root.data)
+    node = find(node_value) || return
+
+    calculate_height(node)
+  end
+
+  def depth(search = root.data, current_node = root, depth = 0)
+    return -1 if current_node.nil?
+    return depth if current_node.data == search
+
+    if search < current_node.data
+      depth(search, current_node.left, depth + 1)
+    else
+      depth(search, current_node.right, depth + 1)
+    end
+  end
+
   private
 
   attr_writer :root
+
+  def calculate_height(node)
+    return -1 if node.nil?
+
+    [calculate_height(node.left), calculate_height(node.right)].max + 1
+  end
 
   def build_tree(sorted_array, array_segment = sorted_array.dup)
     return if array_segment.empty?
