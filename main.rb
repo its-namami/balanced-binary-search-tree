@@ -13,7 +13,6 @@ tree.inorder { |data| print "#{data} " }
 puts "\nPostorder:"
 tree.postorder { |data| print "#{data} " }
 tree << 5
-tree << 6
 puts
 puts tree.pretty_print
 puts '-----'
@@ -33,6 +32,22 @@ puts "19:: d#{tree.depth(19)} | h#{tree.height(19)}"
 puts "21:: d#{tree.depth(21)} | h#{tree.height(21)}"
 puts "23:: d#{tree.depth(23)} | h#{tree.height(23)}"
 puts "29:: d#{tree.depth(29)} | h#{tree.height(29)}"
+
+puts tree.balanced? ? 'yes' : 'no'
+tree << 6
+tree << 8
+tree << 4
+tree << 0
+tree << -1
+tree << -2
+tree << -4
+tree << -5
+tree << -6
+tree.delete(-6)
+tree.delete(-1)
+tree.delete 0
+tree.delete 8
+puts tree.pretty_print
 
 # 50.times do |n|
 #   n -= 20

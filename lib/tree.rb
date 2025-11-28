@@ -21,10 +21,20 @@ class Tree
       return insert(data, node.left) unless node.left.nil?
 
       node.left = Node.new(data)
+      node_left = node.left.clone
+
+      rebalance! unless balanced?
+
+      node_left
     when 1
       return insert(data, node.right) unless node.right.nil?
 
       node.right = Node.new(data)
+      node_right = node.right.clone
+
+      rebalance! unless balanced?
+
+      node_right
     end
   end
 
@@ -55,6 +65,10 @@ class Tree
         self.root = nil
       end
 
+      root_val = root_val.clone
+
+      rebalance! unless balanced?
+
       return root_val
 
     end
@@ -78,6 +92,10 @@ class Tree
     else
       parent.public_send("#{half}=", nil)
     end
+
+    node_val = node_val.clone
+
+    rebalance! unless balanced?
 
     node_val
   end
@@ -167,6 +185,24 @@ class Tree
     else
       depth(search, current_node.right, depth + 1)
     end
+  end
+
+  def balanced?(node = root)
+    return if node.nil?
+
+    unless (calculate_height(root) - 1..calculate_height(root)).include?(depth(node.data) + calculate_height(node))
+      return false
+    end
+
+    balanced?(node.left) != false && balanced?(node.right) != false
+  end
+
+  def rebalance!
+    tree_elements = []
+
+    inorder { |node| tree_elements << node }
+
+    self.root = build_tree(tree_elements)
   end
 
   private
